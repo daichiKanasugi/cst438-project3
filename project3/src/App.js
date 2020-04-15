@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Create from 'createaccount.component.js'
+import Create from './components/create.component.js'
 
 function App() {
   return (
     <Router>
       <div className="container">
-        <Route path="/" exact component={Create} />
+        <Route path="/" component={Create} />
       </div>
     </Router>
   );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component {
+export default class Create extends Component {
   constructor(props) {
     super(props);
 
@@ -36,7 +36,7 @@ export default class CreateUser extends Component {
       password: this.state.password
     }
 
-    axios.post('http://localhost:3000/users/add', login)
+    axios.post('http://localhost:5000/users/add', login)
       .then(res => console.log(res.data));
 
     this.setState({
