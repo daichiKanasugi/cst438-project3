@@ -7,10 +7,12 @@ export default class Create extends Component {
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       username: '',
+      email: '',
       password: ''
     }
   }
@@ -27,13 +29,20 @@ export default class Create extends Component {
     })
   }
 
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value
+    })
+  }
+
   //Adds user in the database with user and pass
   onSubmit(e) {
     e.preventDefault();
 
     const login = {
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      email: this.state.email
     }
 
     axios.post('http://localhost:5000/users/add', login)
@@ -41,7 +50,8 @@ export default class Create extends Component {
 
     this.setState({
       username: '',
-      password: ''
+      password: '',
+      email: ''
     })
   }
 
@@ -57,6 +67,15 @@ export default class Create extends Component {
                 className="form-control"
                 value={this.state.username}
                 onChange={this.onChangeUsername}
+                />
+          </div>
+          <div className="form-group"> 
+            <label>Email: </label>
+            <input  type="text"
+                required
+                className="form-control"
+                value={this.state.email}
+                onChange={this.onChangeEmail}
                 />
           </div>
           <div className="form-group">

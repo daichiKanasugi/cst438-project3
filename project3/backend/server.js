@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 //const uri = process.env.ATLAS_URI;
 
-mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true, useCreateIndex: true  }
+mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true, useUnifiedTopology: true ,useCreateIndex: true  }
 );
 
 // <--Connects to the Mongo DB!! -->
