@@ -11,12 +11,21 @@ class Home extends Component {
     const { isLoggingOut, logoutError } = this.props;    
     return (
       <div>
-        <h1>Otter Feed</h1>
+        <div class="topnav">
+          <a class="active" href="#home">Home</a>
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+          <a href="#about">About</a>
+        </div>
+        <h1>OtterFeed</h1>
         <p>Welcome</p>
         <button onClick={this.handleLogout}>Logout</button>
         {isLoggingOut && <p>Logging Out....</p>}
         {logoutError && <p>Error logging out</p>}
+        
       </div>
+
+      
     );
   }
 }
