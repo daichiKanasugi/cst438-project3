@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {firebaseApp} from "../firebase";
+import { firebaseApp, userRef } from "../firebase";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -37,24 +37,43 @@ const styles = () => ({
   }
 });
 
-const signup = (email, password) => {
-    firebaseApp
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-            console.log("Added to Database");
-            return true;
-        })
-        .catch(err => {
-            console.log(err);
-            return err;
-    });
+const signup = (email, password, firstName, lastName) => {
+  // check that user probided first and last name
+  if(!firstName || !lastName) {
+    return false;
+  } // Note: you need to add errors for missing names!
+
+  firebaseApp
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((data) => {
+        userRef.child(data.user.uid).set({
+          firstName,
+          lastName,
+          email
+        });
+          // may want to remove log
+          console.log("New user with first, last name and email added to Database");
+          return true;
+      })
+      .catch(err => {
+          console.log(err);
+          return err;
+  });
 };
 
 class SignUp extends Component {
     
-  state = { email: "", password: "" };
+  state = { email: "", password: "", firstName: "", lastName: "" };
 
+  handleFirstNameChange = ({ target }) => {
+    this.setState({ firstName: target.value });
+  };
+
+  handleLastNameChange = ({ target }) => {
+    this.setState({ lastName: target.value });
+  };
+  
   handleEmailChange = ({ target }) => {
     this.setState({ email: target.value });
   };
@@ -64,8 +83,8 @@ class SignUp extends Component {
   };
 
   handleSubmit = () => {
-    const { email, password } = this.state;
-    const result = signup(email, password);
+    const { email, password, firstName, lastName } = this.state;
+    const result = signup(email, password, firstName, lastName);
     console.log(result);
   };
 
@@ -79,8 +98,30 @@ class SignUp extends Component {
           <div>
               
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign Up
             </Typography>
+
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="firstName"
+              label="First Name"
+              name="firstName"
+              onChange={this.handleFirstNameChange}
+            >
+            </TextField>
+
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              onChange={this.handleLastNameChange}
+            >
+            </TextField>
 
             <TextField
               variant="outlined"
