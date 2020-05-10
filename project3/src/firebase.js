@@ -34,3 +34,5 @@ const baseDB = firebaseApp.firestore();
 export const db = baseDB;
 
 export const userRef = firebaseApp.database().ref('users');
+
+export const postRef = firebaseApp.database().ref('posts');
