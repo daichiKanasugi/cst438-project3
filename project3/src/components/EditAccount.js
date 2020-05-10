@@ -43,10 +43,9 @@ const styles = () => ({
   },
 });
 
-
-const update = (firstName, lastName) => {
+//edits the first and last name without changing email
+const update = (firstName, lastName, email) => {
     const uid = firebaseApp.auth().currentUser.uid;
-    const email = "kunkun@gmail.com"
     const data = {
             uid,
             email, 
@@ -71,13 +70,13 @@ class SignUp extends Component {
   }
 
   
-componentDidMount() {
-    this.database.on('value', snap=> {
-        this.setState({
-            email: snap.val()
+    componentDidMount() {
+        this.database.on('value', snap=> {
+            this.setState({
+                email: snap.val()
+            });
         });
-    });
-}
+    }
 
   handleFirstNameChange = ({ target }) => {
     this.setState({ firstName: target.value });
@@ -90,6 +89,7 @@ componentDidMount() {
   handleSubmit = () => {
     const {firstName, lastName, email } = this.state;
     const result = update(firstName, lastName, email);
+
     console.log(result);
   };
 
@@ -122,6 +122,7 @@ componentDidMount() {
             >
             </TextField>          
             <div>
+                <Link to ="account">
                 <Button
                 type="button"
                 variant="contained"
@@ -130,6 +131,7 @@ componentDidMount() {
                 >
                 Edit Changes
                 </Button>
+                </Link>
                 
                 <Link to ="account">
                     <Button

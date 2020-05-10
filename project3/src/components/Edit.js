@@ -1,3 +1,5 @@
+//edit function
+
 import {userRef } from "../firebase";
 
 export default ({uid, email, firstName, lastName }) => {
