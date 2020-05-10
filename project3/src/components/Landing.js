@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "../css/Landing.css";
+import { connect } from "react-redux";
 
 class Landing extends Component {
   render() {
+    const {isAuthenticated } = this.props;
+    if (isAuthenticated) {
+      return <Redirect to="/home" />;
+    } 
+    else {
     return (
       <div class="showcase">
         <div class="showcase-top">
@@ -22,7 +28,15 @@ class Landing extends Component {
       </div>
       
     );
-  }
+  }}
 }
 
-export default Landing;
+function mapStateToProps(state) {
+  return {
+    isLoggingIn: state.auth.isLoggingIn,
+    loginError: state.auth.loginError,
+    isAuthenticated: state.auth.isAuthenticated
+  };
+}
+
+export default (connect(mapStateToProps)(Landing));

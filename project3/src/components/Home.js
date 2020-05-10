@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions";
 import Feed from "./Feed";
 import Profile from "./Profile";
+import { Link, Redirect } from "react-router-dom";
 
 class Home extends Component {
   handleLogout = () => {
@@ -12,7 +13,12 @@ class Home extends Component {
   };
 
   render() {
-    const { isLoggingOut, logoutError } = this.props;    
+    const { isLoggingOut, logoutError } = this.props;
+    const {isAuthenticated } = this.props;
+    if (isAuthenticated) {
+      return <Redirect to="/home" />;
+    } 
+    else {    
     return (
       <Container>
         <div style={{background: "#034A51"}}>
@@ -33,8 +39,8 @@ class Home extends Component {
                 preventScrolling: true
             }}
           >
-            <NavItem href="/account">
-              Account
+            <NavItem>
+              <Link to="/account">Account</Link>
             </NavItem>
             <NavItem onClick={this.handleLogout}>
               Log Out
@@ -54,6 +60,7 @@ class Home extends Component {
       </Container>
     );
   }
+}
 }
 
 function mapStateToProps(state) {
