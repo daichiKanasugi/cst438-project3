@@ -39,7 +39,7 @@ componentDidMount() {
         
         return (
         <div>
-            <h1>Account Info</h1>
+            <h1 style={{backgroundColor: 'blue', color: 'white'}}>Account Info</h1>
             <p>Welcome</p>
             <p>{this.state.firstName + ' ' + this.state.lastName + ' !!'} </p>
             <div>
