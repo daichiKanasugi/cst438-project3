@@ -32,6 +32,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "buildpacks": {
+      "url": "https://github.com/HashNuke/heroku-buildpack-elixir"
+  },  
   "browserslist": {
     "production": [
       ">0.2%",
