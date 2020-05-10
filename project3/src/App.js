@@ -8,14 +8,16 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Account from "./components/Account";
 import Edit from "./components/EditAccount";
+import Landing from "./components/Landing";
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
   return (
     <Switch>
+      <Route exact path="/" component={Landing}/>
       <ProtectedRoute
         exact
-        path="/"
+        path="/home"
         component={Home}
         isAuthenticated={isAuthenticated}
         isVerifying={isVerifying}
