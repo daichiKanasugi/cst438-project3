@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions";
 
@@ -16,6 +17,8 @@ class Home extends Component {
         <button onClick={this.handleLogout}>Logout</button>
         {isLoggingOut && <p>Logging Out....</p>}
         {logoutError && <p>Error logging out</p>}
+        <p><Link to="account">Account</Link></p>
+
       </div>
     );
   }

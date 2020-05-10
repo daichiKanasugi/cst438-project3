@@ -11,11 +11,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
+import pic from "../image.jpg";
 
 const styles = () => ({
   "@global": {
     body: {
-      backgroundColor: "#fff"
+      backgroundImage: `url(${pic})`
     }
   },
   paper: {
@@ -106,6 +107,7 @@ class Login extends Component {
             >
               Sign In
             </Button>
+            <p></p>
             <Link to="signup">Click to Sign Up</Link>
           </Paper>
         </Container>
