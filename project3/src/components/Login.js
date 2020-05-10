@@ -11,13 +11,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
-import Image from '../csumb1.jpg';
-import "../css/Landing.css";
+import Image from '../blue_background.jpg';
 
 const styles = () => ({
   "@global": {
     body: {
-      backgroundImage: 'url(${Image})'
+      backgroundImage: `url(${Image})`
     }
   },
   paper: {
@@ -63,7 +62,7 @@ class Login extends Component {
   render() {
     const { classes, loginError, isAuthenticated } = this.props;
     if (isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     } else {
       return (
         <Container component="main" maxWidth="xs">

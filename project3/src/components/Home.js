@@ -12,10 +12,15 @@ class Home extends Component {
     return (
       <div>
         <div class="topnav">
-          <a class="active" href="#home">Home</a>
+          <a class="active" href="#home">OtterFeed</a>
           <a href="#news">News</a>
           <a href="#contact">Contact</a>
           <a href="#about">About</a>
+          {/* <Link to="login">
+                <Button class="btn btn-rounded">
+                    <p>Sign In</p>
+                </Button>
+          </Link> */}
         </div>
         <h1>OtterFeed</h1>
         <p>Welcome</p>
