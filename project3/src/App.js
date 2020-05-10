@@ -6,6 +6,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Account from "./components/Account";
+import Edit from "./components/EditAccount";
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
@@ -20,6 +22,8 @@ function App(props) {
       />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/account" component={Account} />
+      <Route path="/edit" component={Edit} />
     </Switch>
   );
 }

@@ -10,6 +10,7 @@ class Home extends Component {
     const { dispatch } = this.props;
     dispatch(logoutUser());
   };
+
   render() {
     const { isLoggingOut, logoutError } = this.props;    
     return (
@@ -32,8 +33,8 @@ class Home extends Component {
                 preventScrolling: true
             }}
           >
-            <NavItem>
-              Welcome
+            <NavItem href="/account">
+              Account
             </NavItem>
             <NavItem onClick={this.handleLogout}>
               Log Out
