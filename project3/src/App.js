@@ -6,22 +6,22 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Landing from "./components/Landing"
+import Landing from "./components/Landing";
 
 function App(props) {
   const { isAuthenticated, isVerifying } = props;
   return (
     <Switch>
+      <Route exact path="/" component={Landing}/>
       <ProtectedRoute
         exact
-        path="/"
+        path="/home"
         component={Home}
         isAuthenticated={isAuthenticated}
         isVerifying={isVerifying}
       />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/landing" component={Landing} />
     </Switch>
   );
 }

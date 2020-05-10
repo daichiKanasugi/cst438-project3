@@ -19,11 +19,11 @@ ul {
     list-style:none;
 }
 
-h1, h2, h3, h4 {
+.showcase h1, h2, h3, h4 {
     color: white;
 }
 
-a {
+.showcase a {
     color: white;
     text-decoration: none;
 }
