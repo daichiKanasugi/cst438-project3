@@ -56,7 +56,7 @@ const update = (firstName, lastName, email) => {
 };
 
 
-class SignUp extends Component {
+class EditAccount extends Component {
   constructor() {
     super()
 
@@ -67,9 +67,7 @@ class SignUp extends Component {
     this.state = {
         email: "",
     }
-  }
-
-  
+  } 
     componentDidMount() {
         this.database.on('value', snap=> {
             this.setState({
@@ -156,4 +154,4 @@ function mapStateToProps(state) {
     };
   }
 
-export default withStyles(styles)(connect(mapStateToProps)(SignUp));
+export default withStyles(styles)(connect(mapStateToProps)(EditAccount));

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { firebaseApp, userRef } from "../firebase";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
-
 import { withStyles } from "@material-ui/styles";
+import Paper from "@material-ui/core/Paper";
+import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -37,12 +38,13 @@ const styles = () => ({
   }
 });
 
-const signup = (email, password, firstName, lastName) => {
+const signup = ({email, password, firstName, lastName}) => {
   // check that user probided first and last name
   if(!firstName || !lastName) {
     return false;
   } // Note: you need to add errors for missing names!
 
+  //firebase functionality to create users with authentication.
   firebaseApp
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -52,8 +54,6 @@ const signup = (email, password, firstName, lastName) => {
           lastName,
           email
         });
-          // may want to remove log
-          console.log("New user with first, last name and email added to Database");
           return true;
       })
       .catch(err => {
@@ -91,71 +91,75 @@ class SignUp extends Component {
   render() {
       const {isAuthenticated } = this.props;
       if (isAuthenticated) {
-        return <Redirect to="/" />;
+        return <Redirect to="/home" />;
       } 
       else {
         return (
-          <div>
-              
-            <Typography component="h1" variant="h5">
-              Sign Up
-            </Typography>
+          <Container component="main" maxWidth="xs">
+            <Paper>
+              <div>
+                <Typography component="h1" variant="h5">
+                  Sign Up
+                </Typography>
 
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="firstName"
-              label="First Name"
-              name="firstName"
-              onChange={this.handleFirstNameChange}
-            >
-            </TextField>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  name="firstName"
+                  onChange={this.handleFirstNameChange}
+                >
+                </TextField>
 
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="lastName"
-              label="Last Name"
-              name="lastName"
-              onChange={this.handleLastNameChange}
-            >
-            </TextField>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  onChange={this.handleLastNameChange}
+                >
+                </TextField>
 
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              onChange={this.handleEmailChange}
-            >
-            </TextField>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  onChange={this.handleEmailChange}
+                >
+                </TextField>
 
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              onChange={this.handlePasswordChange}
-            >
-            </TextField>
-            
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={this.handleSubmit}
-            >
-              Sign Up
-            </Button>
-        </div>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  onChange={this.handlePasswordChange}
+                >
+                </TextField>
+                
+                <Button
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleSubmit}
+                >
+                  Sign Up
+                </Button>
+            </div>
+            <Link to="login">Click to Login</Link>
+          </Paper>
+        </Container>
       );
     }
     }
